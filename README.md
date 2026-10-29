@@ -88,6 +88,7 @@ EXAMPLES
   slimer svg  left.png right.png topology.svg
 ```
 
+
 ### Stretch-Goals: (maybe infeasible; exploratory)
 
 1. an iterative version of Phase Correlation (2D FFT) that does not require loading the entire file (e.g. comparing sections)
@@ -164,6 +165,7 @@ Choice of method (or list of retry-options, e.g. if one method fails, try the ne
 - use-cases, hardware, software, context
 - various optional or combined strategies
 - later steps such as mesh-to-mesh comparison
+- parts and stages of pipelines of steps, with later and more diverse applications of results of previous steps and layers
 
 
 ### Separation of 'Modes' & Uses:
@@ -180,7 +182,6 @@ Choice of method (or list of retry-options, e.g. if one method fails, try the ne
 3. Real-World-Approximation: in many real world cases (either for live-stream processing on an embedded device or visual display for software) it seems that a fast-fudge approach is needed optional direction and different from an 'whatever it takes' resource-cost-policy for medical image analysis that is focused on highest levels of detail and precision regardless of resources.
 
 
-
 ## Fascinating Intersection of STEM Areas:
 - Medical/Health
 - Statistics
@@ -188,7 +189,7 @@ Choice of method (or list of retry-options, e.g. if one method fails, try the ne
 - Game/Theater/Animation/Art/Literature
 - Hardware Software Planning & Design
 
-For example, in two parts, A. imagine asking these people to develop something to perform image registration, then ask the same set of other people which of the resulting code they could use directly or indirectly:
+Imagine asking different teams/developers in these areas (see list below) to develop something to perform image registration. Then ask the same set of other people which of the resulting solutions they could use directly or indirectly, how, and how-not?
 
 
 #### Work/Use Context/Cases:
@@ -236,7 +237,6 @@ For example, in two parts, A. imagine asking these people to develop something t
 - Specific Hardware Use
 
 
-
 ### What issues come up when comparing use-contexts?
 - Garbage-Collection
 - static-analysis and auditability of software
@@ -245,8 +245,6 @@ For example, in two parts, A. imagine asking these people to develop something t
 - resource-use
 - language-choice
 - hardware-choice
-
-
 
 
 #### References: Image Registration
