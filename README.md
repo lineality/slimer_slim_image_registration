@@ -97,6 +97,15 @@ or sampling?
 7. GPU parallelization (where that makes sense for various types of input/use)
 
 
+## Possible Use Cases (direct or indirect):
+1. multi-sensor resolution-boosting: use a larger N number of very cheap low quality sensors (e.g. cameras) to create a good-enough higher-resolution image (possibly for CCTV type low-rez that is notorious nearly useless for identifying anything in any useful detail: "We can see this grey-blurr entering the camera at 8:37 pm!"
+
+2. Position/Motion Tracking Analysis for Physical Therapy:
+- Identifying positions or movements that, e.g. represent indicators or health dangers or health improvements
+- Possibly using 3D mesh-data input for classification models rather than color-image-2D photos
+- Granmo-models
+
+
 ### Fascinating Intersection of STEM Areas
 - Medical/Health
 - Statistics
@@ -104,6 +113,53 @@ or sampling?
 - Game/Theater/Animation/Art/Literature
 - Hardware Software Planning & Design
 
+For example, in two parts, A. imagine asking these people to develop something to perform image registration, then ask the same set of other people which of the resulting code they could use directly or indirectly:
+
+- Academic: R-data-scientist
+- Academic: python-sklearn Data-Scientist
+- Academic: mathematician
+- Academic: Physicist
+- Academic: Statistician
+- 'Tiny-ML' Data-Scientist
+- Academic: Operations Research
+- Field-research sensors (might include space probes, academic/commercial)
+- Business Analyst (SQL, Power-BI) [Also within 'data science']
+- FrontEnd React Developer
+- Backend No-SQL Endpoint Developer
+- BackEnd Serverless-Function Developer
+- Mobile-app game developer
+- mobile multi-player game developer
+- Mobile native app developer (on device) [android, iOS]
+- Mobile cloud app developer (on device) [android, iOS]
+- c++ PC-Game +GPU developer
+- High Performance GPU developer
+- High Performance Mainframe developer
+- High Performance OS (IBM-AIX) developer
+- Console Game Developer (PS, XBox, etc.)
+- Handheld Game Developer (Switch, 
+- Therapists including Physical Therapist, Speech Language Pathologist, Occupational Therapist (PT, SLP, OT)
+- Medial-imaging: hospital image lab technician/nurse/doctor (x-ray, CT, etc.)
+- Physical trainer / Coach
+- on-edge arduino developer
+- on-edge raspberry-pi developer
+- Embedded device code for NASA/Military
+- Robotics Lab with computer vision
+- Self-Driving Car lab
+- Deep-Learning Lab
+- Diffusion-Model Lab
+- Attention-Model Lab (Large Model)
+- Attention-Model Lab (Small/Tiny Model)
+- Security Devices (cameras, video)
+- Municipal and First Responder (Fire, Ambulance, etc.)
+
+What issues come up:
+- Garbage-Collection
+- static-analysis and auditability of software
+- performance optimization
+- maintainability
+- resource-use
+- language-choice
+- hardware-choice
 
 #### References: Image Registration
 1. Why Anton keeps coming back to C, Wookash Podcast
