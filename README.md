@@ -79,7 +79,7 @@ EXAMPLES
   slimer svg  left.png right.png topology.svg
 ```
 
-### stretch-goals: (maybe infeasible)
+### Stretch-Goals: (maybe infeasible; exploratory)
 
 1. an iterative version of Phase Correlation (2D FFT) that does not require loading the entire file (e.g. comparing sections)
 or sampling?
@@ -95,6 +95,15 @@ or sampling?
 6. N-images is a stretch goal, in case that is a process that can be modularized for a fixed pre-allocated modular process. (or may not be a goal at all, or it the real goal may be image file and image-stream processing... e.g. a kind of N-updates process done linearly?
 
 7. GPU parallelization (where that makes sense for various types of input/use)
+
+
+### Fascinating Intersection of STEM Areas
+- Medical/Health
+- Statistics
+- Computer-Vision (Systems Programming, Data Science, Machine-Learning)
+- Game/Theater/Animation/Art/Literature
+- Hardware Software Planning & Design
+
 
 #### References: Image Registration
 1. Why Anton keeps coming back to C, Wookash Podcast
