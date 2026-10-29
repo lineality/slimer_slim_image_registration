@@ -1,5 +1,7 @@
 #### slimer_slim_image_registration
 
+- https://en.wikipedia.org/wiki/Image_registration
+
 ```
 SLIMER v2.0 - slim, zero-heap image registration (alignment) and fusion
 
@@ -76,3 +78,31 @@ EXAMPLES
   slimer mesh photo1.png photo2.png terrain.obj
   slimer svg  left.png right.png topology.svg
 ```
+
+### stretch-goals: (maybe infeasible)
+
+1. an iterative version of Phase Correlation (2D FFT) that does not require loading the entire file (e.g. comparing sections)
+or sampling?
+
+2. resulting wire-frame-tolology/coordinates from two different video angles streamed in real-time
+
+3. SVG 3D-Wireframe Projection (2D vector) (or some kind of image-over frame)
+
+4. processing video-stream input
+
+5. 16-bit-per-channel (or RGB565) color depth and palette-based (indexed) PNGs with 16 colors
+
+6. N-images is a stretch goal, in case that is a process that can be modularized for a fixed pre-allocated modular process. (or may not be a goal at all, or it the real goal may be image file and image-stream processing... e.g. a kind of N-updates process done linearly?
+
+#### References: Image Registration
+1. Why Anton keeps coming back to C, Wookash Podcast
+- https://www.youtube.com/watch?v=7lOupIR1620 
+
+2. Designing and Evaluating Reusable Components - 2004, Casey Muratori
+- https://www.youtube.com/watch?v=ZQ5_u8Lgvyk 
+
+3. API Design by Carson Gross ~ BSDC 2025, Montana Programmers
+- https://www.youtube.com/watch?v=dTstnhS3moc 
+
+
+[Alpha MVP-Demo Developed using web-UI for Gemini 3.8 Flash  & Claude]
