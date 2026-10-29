@@ -1,9 +1,18 @@
 #### slimer_slim_image_registration
+(Very experimental, exploratory, under-construction)
 
-- https://en.wikipedia.org/wiki/Image_registration
+- See: https://en.wikipedia.org/wiki/Image_registration
 
+# Slimer
+An 'image registration' module rust crate that \
+iterates over sections of files and uses only pre-allocated stack memory \
+(no image file fully loaded into memory, no heap) \
+with output options for map, 2D enhancement, 3D mesh, SVG-overlay, etc.
+
+
+#### Help Guide
 ```
-SLIMER v2.0 - slim, zero-heap image registration (alignment) and fusion
+SLIMER - slim, zero-heap image registration (alignment) and fusion
 
 USAGE
   slimer <MODE> <REFERENCE_IMAGE.png> <TARGET_IMAGE.png> [OUTPUT_FILE]
@@ -11,7 +20,7 @@ USAGE
   via cargo:  cargo run --release -- <MODE> <REFERENCE> <TARGET> [OUTPUT]
 
 FUNCTIONALITIES
-  1. Streams both PNGs one scanline at a time (never loads a whole image).
+  1. Streams both PNGs one scanline at a time (never loads whole image).
   2. Estimates the global shift (dx, dy) that maps REFERENCE onto TARGET:
      rows and columns of brightness are summed into two 1D 'projection'
      signatures per image, which are matched by Sum of Absolute Differences.
@@ -35,7 +44,7 @@ MODES
         drapes the REFERENCE photo over the surface. Open the .obj in MeshLab.
   svg   2:1 isometric projection of the wireframe as an SVG vector image.
         Open in any web browser.
-  Aliases: --2d, --3d, --mesh, --svg.
+  Aliases: --2d, --3d, --mesh, --svg
 
   3D NOTE: Z (height) is a visual heuristic, NOT measured depth:
            Z = brightness / 4 + local stereo disparity * 3.
@@ -96,6 +105,17 @@ or sampling?
 
 7. GPU parallelization (where that makes sense for various types of input/use)
 
+8. Explore modular non-expanding-memory ways to use methods that normally do a 'sloppy-power-grab' on memory:
+- Not Implemented ZNCC (Zero-Mean Normalized Cross-Correlation) [2D, 3D], lighting
+- Not Implemented FAST Corner Detector + Binary Descriptors (e.g., BRIEF/ORB) [2D, Sparse 3D]
+
+
+### Optional Output Modes: any or all of these
+A. A pixel/coordinate map between the images (maybe two items of 2D process is not same as 3D result process)
+B. Resulting 2D image file 
+C. Resulting 3D image file
+D. Process/Issue Details Report(s)
+
 
 ## Possible Use Cases (direct or indirect):
 1. multi-sensor resolution-boosting: use a larger N number of very cheap low quality sensors (e.g. cameras) to create a good-enough higher-resolution image (possibly for CCTV type low-rez that is notorious nearly useless for identifying anything in any useful detail: "We can see this grey-blurr entering the camera at 8:37 pm!"
@@ -103,10 +123,65 @@ or sampling?
 2. Position/Motion Tracking Analysis for Physical Therapy:
 - Identifying positions or movements that, e.g. represent indicators or health dangers or health improvements
 - Possibly using 3D mesh-data input for classification models rather than color-image-2D photos
-- Granmo-models
+
+3. position/motion analysis on top of other previous layers of processing (not static-map analysis, but in-map-dynamics analysis
+
+4. Classification / Scoring / Detection
 
 
-### Fascinating Intersection of STEM Areas
+## Scope: (planning notes) Possible Parameters
+- single-thread vs. parallel
+- best-approximation vs. succeed/fail
+- segment-stitching or not
+- speed vs. precision
+- pixel-dimensions of output (e.g. same as input vs. higher than input)
+- file format output (jpg?, png?, svg?, bitmap?, other?)
+
+
+## Similarity Metrics / Matching Kernels
+Choice of method (or list of retry-options, e.g. if one method fails, try the next).
+
+1. 1D Projections (Row / Column Collapsing) [2D]
+
+2. SAD / SSD (Sum of Absolute / Squared Differences) [2D, 3D]
+- anchors
+
+3. Identity Transform with DegradedConfidence
+
+
+### Approaches to Registration
+- Classic Algorithm
+- Machine-learning (from GOFAI to stats to deep etc; trained/unsupervised)
+- Granmo-models!
+
+
+### Separation of Processes:
+- image-to-image mapping
+- 'Matching Kernel'
+- 2D uses of map
+- semi-3D uses of map
+- 3D uses of map
+- use-cases, hardware, software, context
+- various optional or combined strategies
+- later steps such as mesh-to-mesh comparison
+
+
+### Separation of 'Modes' & Uses:
+(Also see list of Work/Use Context/Cases below)
+- best-approximation vs. succeed/fail
+- speed vs. precision
+
+
+### Questions:
+1. What are the factors around parallelization, 'hot-loop' sections of code, GPU vs. CPU, stateless (lambda) function calculations (e.g. for parallelization)? Where does it make sense to use GPU or CPU parallelization and where not? (e.g. cost of overhead of setup for parallel-run)
+
+2. In terms of computer vision, there seems to be an obvious disjunction between Post-Deep-Learning-Era image processing vs. 'GOFAI'/normal-math approaches: map?
+
+3. Real-World-Approximation: in many real world cases (either for live-stream processing on an embedded device or visual display for software) it seems that a fast-fudge approach is needed optional direction and different from an 'whatever it takes' resource-cost-policy for medical image analysis that is focused on highest levels of detail and precision regardless of resources.
+
+
+
+## Fascinating Intersection of STEM Areas:
 - Medical/Health
 - Statistics
 - Computer-Vision (Systems Programming, Data Science, Machine-Learning)
@@ -115,6 +190,8 @@ or sampling?
 
 For example, in two parts, A. imagine asking these people to develop something to perform image registration, then ask the same set of other people which of the resulting code they could use directly or indirectly:
 
+
+#### Work/Use Context/Cases:
 - Academic: R-data-scientist
 - Academic: python-sklearn Data-Scientist
 - Academic: mathematician
@@ -144,6 +221,7 @@ For example, in two parts, A. imagine asking these people to develop something t
 - on-edge raspberry-pi developer
 - Embedded device code for NASA/Military
 - Robotics Lab with computer vision
+- Cyber Security
 - Self-Driving Car lab
 - Deep-Learning Lab
 - Diffusion-Model Lab
@@ -151,8 +229,15 @@ For example, in two parts, A. imagine asking these people to develop something t
 - Attention-Model Lab (Small/Tiny Model)
 - Security Devices (cameras, video)
 - Municipal and First Responder (Fire, Ambulance, etc.)
+- Animator/Digital Artist
+- Digital-Twin Simulation
+- Risk/Eval Modeling
+- Optics Hardware Production
+- Specific Hardware Use
 
-What issues come up:
+
+
+### What issues come up when comparing use-contexts?
 - Garbage-Collection
 - static-analysis and auditability of software
 - performance optimization
@@ -161,15 +246,22 @@ What issues come up:
 - language-choice
 - hardware-choice
 
+
+
+
 #### References: Image Registration
-1. Why Anton keeps coming back to C, Wookash Podcast
+
+1. https://en.wikipedia.org/wiki/Image_registration 
+
+2. Why Anton keeps coming back to C, Wookash Podcast
 - https://www.youtube.com/watch?v=7lOupIR1620 
 
-2. Designing and Evaluating Reusable Components - 2004, Casey Muratori
+3. Designing and Evaluating Reusable Components - 2004, Casey Muratori
 - https://www.youtube.com/watch?v=ZQ5_u8Lgvyk 
 
-3. API Design by Carson Gross ~ BSDC 2025, Montana Programmers
+4. API Design by Carson Gross ~ BSDC 2025, Montana Programmers
 - https://www.youtube.com/watch?v=dTstnhS3moc 
 
 
-[Alpha MVP-Demo Developed using web-UI for Gemini 3.8 Flash  & Claude]
+#### AI-Use
+[Alpha-MVP-Demo code was developed using web-UI review & suggestions for Gemini 3.8 Flash & Claude]
