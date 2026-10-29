@@ -86,6 +86,8 @@ EXAMPLES
   slimer 3d   left.png right.png wireframe.obj
   slimer mesh photo1.png photo2.png terrain.obj
   slimer svg  left.png right.png topology.svg
+
+Note: MeshLab in fedora linux standard repos works to open mesh-file
 ```
 
 

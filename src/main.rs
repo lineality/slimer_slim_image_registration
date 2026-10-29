@@ -63,15 +63,15 @@ const EXIT_CODE_COMMAND_FAILED: u8 = 1;
 const EXIT_CODE_USAGE_ERROR: u8 = 2;
 
 const HELP_TEXT: &str = "\
-SLIMER v2.0 - slim, zero-heap image registration (alignment) and fusion
+SLIMER - slim, zero-heap image registration (alignment) and fusion
 
 USAGE
   slimer <MODE> <REFERENCE_IMAGE.png> <TARGET_IMAGE.png> [OUTPUT_FILE]
   slimer -h | --help | help
   via cargo:  cargo run --release -- <MODE> <REFERENCE> <TARGET> [OUTPUT]
 
-WHAT IT DOES
-  1. Streams both PNGs one scanline at a time (never loads a whole image).
+FUNCTIONALITIES
+  1. Streams both PNGs one scanline at a time (never loads whole image).
   2. Estimates the global shift (dx, dy) that maps REFERENCE onto TARGET:
      rows and columns of brightness are summed into two 1D 'projection'
      signatures per image, which are matched by Sum of Absolute Differences.
@@ -95,7 +95,7 @@ MODES
         drapes the REFERENCE photo over the surface. Open the .obj in MeshLab.
   svg   2:1 isometric projection of the wireframe as an SVG vector image.
         Open in any web browser.
-  Aliases: --2d, --3d, --mesh, --svg.
+  Aliases: --2d, --3d, --mesh, --svg
 
   3D NOTE: Z (height) is a visual heuristic, NOT measured depth:
            Z = brightness / 4 + local stereo disparity * 3.
@@ -137,6 +137,8 @@ EXAMPLES
   slimer 3d   left.png right.png wireframe.obj
   slimer mesh photo1.png photo2.png terrain.obj
   slimer svg  left.png right.png topology.svg
+
+Note: MeshLab in fedora linux standard repos works to open mesh-file
 ";
 
 // ============================================================================
