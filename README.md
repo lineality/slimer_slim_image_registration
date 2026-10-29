@@ -94,6 +94,8 @@ or sampling?
 
 6. N-images is a stretch goal, in case that is a process that can be modularized for a fixed pre-allocated modular process. (or may not be a goal at all, or it the real goal may be image file and image-stream processing... e.g. a kind of N-updates process done linearly?
 
+7. GPU parallelization (where that makes sense for various types of input/use)
+
 #### References: Image Registration
 1. Why Anton keeps coming back to C, Wookash Podcast
 - https://www.youtube.com/watch?v=7lOupIR1620 
